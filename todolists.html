@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-transform: capitalize;
+        }
+        body{
+           /* min-width: 100vh;*/
+           height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to left,green,cyan,lightgreen);
+        }
+        .container{
+         width:350px;
+         height:350px;
+
+         max-height: 100%;
+        background-color: #fff;
+        border-radius:10px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+       /* padding: 10px;
+        overflow-y: auto;*/
+        }
+        #input{
+           /* height: 50px;
+            width: 80%;*/
+            outline:none;
+            border:2px solid black;
+            border-radius: 5px;
+            background-color:none;
+            color: black;
+            width:70%;
+            /*padding: 0 10px;
+            margin: 15px 0;*/
+        }
+        #input::placeholder{
+            color: rgba(37, 39, 39, 0.89);
+        }
+      #newtask{
+        position: relative;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+     /* #add{
+        height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #fff;
+    margin: 0.25px;
+    background: rgb(94, 61, 94);
+    cursor: pointer;
+      }*/
+      #add{
+        background-color: purple;
+        color:#bbb;
+        cursor: pointer;
+        width: 20%;
+        height: 35px;
+        border-radius: 5px;
+        font-weight: 500;
+
+      }
+      #tasklist{
+        margin-bottom: 9px;
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      .task{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #c5e1e6;
+        height: 45px;
+        margin-bottom: 9px;
+        padding: 5px 10px;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid grey;
+      }
+      .del{
+        color: rgb(241, 231, 231);
+        border-radius: 5px;
+        border: 2px solid black;
+     
+        background: red;
+        cursor: pointer;
+        outline: none;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="newtask">
+        <input type="text" id="input" placeholder="enter the task">
+        <button id="add" >ADD</button>
+        </div>
+        <div id="tasklist"></div>
+    </div>
+    
+    <script type="text/javascript">
+    let todoele = document.getElementById('input');
+    let tasklist=document.getElementById("tasklist");
+    document.getElementById("add").onclick=function(){
+        if(todoele.value.length==0){
+            alert("Enter a task details")
+        }
+        else{
+            tasklist.innerHTML = tasklist.innerHTML+`
+            <div class="task">
+            <span id="work">${todoele.value}</span>
+            <button class="del">X</i></button>
+            </div>`
+            let alltasks=document.querySelectorAll('.del')
+            for(let i=0;i<alltasks.length;i++){
+                alltasks[i].onclick=function(){
+                    console.log(this)
+                    console.log(this.parentNode)
+                    this.parentNode.remove()
+                }
+            }
+           todoele.value=""
+        }
+    }
+    </script>
+</body>
+</html>
